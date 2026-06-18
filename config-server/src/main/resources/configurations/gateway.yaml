@@ -1,0 +1,32 @@
+server:
+  port: 8072
+
+spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: account
+              uri: http://localhost:8090
+              predicates:
+                - Path=/api/v1/accounts/**
+
+            - id: cards
+              uri: http://localhost:8070
+              predicates:
+                - Path=/api/v1/cards/**
+
+            - id: loans
+              uri: http://localhost:8050
+              predicates:
+                - Path=/api/v1/loans/**
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          #uri: git@github.com:Zhugo83/BankApplicationConfig.git
+
+          uri: https://github.com/Zhugo83/BankApplicationConfig.git
+          clone-on-start: true
+          default-label: master
+          username: ${GIT_USERNAME}
+          password: ${GIT_PASSWORD}
+          #native:
+            #search-locations: classpath:/configurations
