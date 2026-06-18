@@ -1,24 +1,16 @@
-package com.hugo.loans.model;
+package com.hugo.accounts.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "loans")
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class Loan {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
-    private Integer customerId;
+    private Long id;
+    private Long customerId;
     private LocalDate startDate;
     private String loanType;
     private Long totalLoan;

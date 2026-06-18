@@ -4,30 +4,26 @@ import com.hugo.cards.model.Card;
 import com.hugo.cards.repository.CardRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class CardService {
 
-    private final CardRepository cardRepository;
+    private final CardRepository repository;
 
-    public CardService(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
+    public CardService(CardRepository repository) {
+        this.repository = repository;
     }
 
-    public void addCard(Card card) {
-        cardRepository.save(card);
+    public List<Card> findAllExistingCards() {
+        return repository.findAll();
     }
 
-    public void editCard(Card card) {
-        cardRepository.save(card);
+    public List<Card> findAllExistingCardsByCustomerId(long customerId) {
+        return repository.findAllCardsByCustomerId(customerId);
     }
 
-    public void deleteCard(Card card) {
-        cardRepository.delete(card);
-    }
-
-    public Optional<Card> findAllCardsByCustomer(Integer id) {
-        return cardRepository.findById(id);
+    public Card createNewCard(Card card){
+        return repository.save(card);
     }
 }

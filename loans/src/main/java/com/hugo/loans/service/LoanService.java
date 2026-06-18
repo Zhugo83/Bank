@@ -4,29 +4,27 @@ import com.hugo.loans.model.Loan;
 import com.hugo.loans.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class LoanService {
 
-    private final LoanRepository loanRepository;
-    public LoanService(LoanRepository loanRepository) {
-        this.loanRepository = loanRepository;
+    private final LoanRepository repository;
+
+    public LoanService(LoanRepository repository) {
+        this.repository = repository;
     }
 
-    public void addLoan(Loan loan) {
-        loanRepository.save(loan);
+    public List<Loan> findAllExistingLoans() {
+        return repository.findAll();
     }
 
-    public Optional<Loan> findAllLoansByCustomer(Integer customerId) {
-        return loanRepository.findById(customerId);
+    public List<Loan> findAllExistingLoansByCustomerId(long customerId) {
+        return repository.findAllByCustomerId(customerId);
     }
 
-    public void updateLoan(Loan loan) {
-        loanRepository.save(loan);
-    }
-
-    public void deleteLoan(Loan loan) {
-        loanRepository.delete(loan);
+    public Loan create(Loan loan) {
+        return repository.save(loan);
     }
 }

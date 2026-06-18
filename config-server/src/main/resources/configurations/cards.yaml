@@ -10,8 +10,8 @@ eureka:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/ms_demo_cards?useSSL=false&allowPublicKeyRetrieval=true
-    username:
-    password:
+    username: root
+    password: Password
   jpa:
     hibernate:
       ddl-auto: create

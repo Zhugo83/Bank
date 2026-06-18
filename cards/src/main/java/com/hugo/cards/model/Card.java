@@ -19,10 +19,11 @@ public class Card {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer cardId;
     private Integer customerId;
-    private Long cardNumber;
+    private String cardNumber;
+    private String cardType;
     private Long totalLimit;
     private Long amountUsed;
-    private Long AvailableAmount;
-    private LocalDate date;
+    private Long availableAmount;
+    private LocalDate createdDate;
 
 }

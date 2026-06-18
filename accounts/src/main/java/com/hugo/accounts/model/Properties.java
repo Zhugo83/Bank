@@ -1,4 +1,4 @@
-package com.hugo.accounts.dto;
+package com.hugo.accounts.model;
 
 import lombok.Getter;
 import lombok.Setter;

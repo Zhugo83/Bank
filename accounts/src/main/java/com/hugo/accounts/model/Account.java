@@ -15,11 +15,11 @@ import java.time.LocalDate;
 @Setter
 public class Account {
 
+    private Long customerId;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer customerId;
-    private Integer accountNumber;
-    private AccountType accountType;
+    private Long accountNumber;
+    private String accountType;
     private String bankAddress;
     private LocalDate createdDate;
 

@@ -2,31 +2,52 @@ server:
   port: 8072
 
 spring:
-  main:
-    web-application-type: reactive
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-            - id: account
-              uri: http://localhost:8090
-              predicates:
-                - Path=/api/v1/accounts/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
-            - id: cards
-              uri: http://localhost:8070
-              predicates:
-                - Path=/api/v1/cards/**
-
-            - id: loans
-              uri: http://localhost:8050
-              predicates:
-                - Path=/api/v1/loans/**
+#spring:
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          routes:
+#            - id: customer
+#              #uri: http://localhost:9090
+#              uri: lb://accounts
+#              predicates:
+#                - Path=/api/v1/accounts,/api/v1/accounts/**
+#
+#            - id: account
+#              #uri: http://localhost:9090
+#              uri: lb://accounts
+#              predicates:
+#                - Path=/api/v1/customers,/api/v1/customers/**
+#
+#            - id: cards
+#              #uri: http://localhost:9070
+#              uri: lb://cards
+#              predicates:
+#                - Path=/api/v1/cards,/api/v1/cards/**
+#
+#            - id: loans
+#              #uri: http://localhost:9050
+#              uri: lb://loans
+#              predicates:
+#                - Path=/api/v1/loans,/api/v1/loans/**
 
 eureka:
-  instance:
-    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      register-with-eureka: true
+      fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
